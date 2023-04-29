@@ -9,8 +9,6 @@ import NavBarItemPlain from '../components/NavBarItemPlain'
 import AsideMenu from '../components/AsideMenu'
 import { setUser } from '../stores/mainSlice'
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
-import FormField from '../components/FormField'
-import { Field, Form, Formik } from 'formik'
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -58,8 +56,9 @@ export default function LayoutAuthenticated({ children }: Props) {
   return (
     <div className={`${darkMode ? 'dark' : ''} overflow-hidden lg:overflow-visible`}>
       <div
-        className={`${layoutAsidePadding} ${isAsideMobileExpanded ? 'ml-60 lg:ml-0' : ''
-          } pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100`}
+        className={`${layoutAsidePadding} ${
+          isAsideMobileExpanded ? 'ml-60 lg:ml-0' : ''
+        } pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100`}
       >
         <NavBar
           menu={menuNavBar}
@@ -85,7 +84,6 @@ export default function LayoutAuthenticated({ children }: Props) {
           onAsideLgClose={() => setIsAsideLgActive(false)}
         />
         {children}
-
       </div>
     </div>
   )

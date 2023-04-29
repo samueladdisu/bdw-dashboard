@@ -10,33 +10,6 @@ import axios from 'axios'
 import PrimeDataTable from '../../components/PrimeDataTable'
 
 const Listing = () => {
-  const [products, setProducts] = useState([])
-
-  const columns = [
-    { field: 'userId', header: 'User Id' },
-    { field: 'id', header: 'ID' },
-    { field: 'title', header: 'Title' },
-    { field: 'body', header: 'Body' },
-  ]
-
-  const fetchPost = async () => {
-    await axios.get('https://jsonplaceholder.typicode.com/posts').then((res) => {
-      console.log(res.data)
-
-      // const data = res.data.map((item) => {
-      //   return {
-      //     id: item.id,
-      //     title: item.title
-      //   }
-      // })
-      setProducts(res.data)
-    })
-  }
-
-  useEffect(() => {
-    fetchPost()
-  }, [])
-
   return (
     <>
       <Head>

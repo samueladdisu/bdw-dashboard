@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { classNames } from 'primereact/utils'
 import { FilterMatchMode, FilterOperator } from 'primereact/api'
-import {
-  DataTable,
-  DataTableFilterMeta,
-  ColumnFilterClearTemplateOptions,
-  ColumnFilterApplyTemplateOptions,
-} from 'primereact/datatable'
+import { DataTable, DataTableFilterMeta } from 'primereact/datatable'
 import { Column, ColumnFilterElementTemplateOptions } from 'primereact/column'
 import { InputText } from 'primereact/inputtext'
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown'
@@ -28,19 +23,19 @@ interface RepresentativeOption {
 interface Customer {
   id: number
   name: string
-  country: Country
+  country: string
   company: string
-  date: string
+  date: Date
   status: string
   verified: boolean
   activity: number
-  representative: Representative
+  representative: string
   balance: number
 }
 
 export default function PrimeDataTable() {
   const [customers, setCustomers] = useState<Customer[] | null>(null)
-  const [filters, setFilters] = useState<DataTableFilterMeta | null>(null)
+  const [filters, setFilters] = useState<DataTableFilterMeta | any>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [globalFilterValue, setGlobalFilterValue] = useState<string>('')
   const [representatives] = useState<RepresentativeOption[]>([
@@ -176,7 +171,7 @@ export default function PrimeDataTable() {
     )
   }
 
-  const countryBodyTemplate = (rowData: Customer) => {
+  const countryBodyTemplate = (rowData: any) => {
     return (
       <div className="flex align-items-center gap-2">
         <img
@@ -190,7 +185,7 @@ export default function PrimeDataTable() {
     )
   }
 
-  const filterClearTemplate = (options: ColumnFilterClearTemplateOptions) => {
+  const filterClearTemplate = (options: any) => {
     return (
       <Button
         type="button"
@@ -201,7 +196,7 @@ export default function PrimeDataTable() {
     )
   }
 
-  const filterApplyTemplate = (options: ColumnFilterApplyTemplateOptions) => {
+  const filterApplyTemplate = (options: any) => {
     return (
       <Button
         type="button"
@@ -216,7 +211,7 @@ export default function PrimeDataTable() {
     return <div className="px-3 pt-0 pb-3 text-center">Filter by Country</div>
   }
 
-  const representativeBodyTemplate = (rowData: Customer) => {
+  const representativeBodyTemplate = (rowData: any) => {
     const representative = rowData.representative
 
     return (
@@ -278,13 +273,13 @@ export default function PrimeDataTable() {
     return formatCurrency(rowData.balance)
   }
 
-  const balanceFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
+  const balanceFilterTemplate = (options: any) => {
     return (
       <InputNumber
         value={options.value}
-        onChange={(e: InputNumberValueChangeEvent) =>
-          options.filterCallback(e.value, options.index)
-        }
+        // onChange={(e: InputNumberValueChangeEvent) =>
+        //   options.filterCallback(e.value, options.index)
+        // }
         mode="currency"
         currency="USD"
         locale="en-US"
@@ -359,7 +354,7 @@ export default function PrimeDataTable() {
           Verified
         </label>
         <TriStateCheckbox
-          inputId="verified-filter"
+          // inputId="verified-filter"
           value={options.value}
           onChange={(e: TriStateCheckboxChangeEvent) => options.filterCallback(e.value)}
         />

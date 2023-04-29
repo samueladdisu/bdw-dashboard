@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import LayoutAuthenticated from '../../layouts/Authenticated'
 import SectionTitleLineWithButton from '../../components/SectionTitleLineWithButton'
-import { getPageTitle, inputClass, labelClass, formField, buttonClass } from '../../config'
+import { getPageTitle } from '../../config'
 import Head from 'next/head'
 import SectionMain from '../../components/SectionMain'
 import { mdiBallotOutline } from '@mdi/js'
@@ -29,13 +29,6 @@ function Categories() {
   useEffect(() => {
     ProductService.getProductsMini().then((data) => setProducts(data))
   }, [])
-
-  const [checkbox1, setCheckbox1] = useState([])
-
-  const showLogs2 = (e) => {
-    setCheckbox1(e)
-    console.log('checkboxes data', e)
-  }
 
   return (
     <>
